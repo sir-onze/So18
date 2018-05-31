@@ -7,19 +7,22 @@
 struct command{
     char* doc;
     int dep;
-    char** cmd;
+    char* cmd;
+    char** pro_cmd;
     char* output;
 };
 
-Command new_cmd(char* doc, int dep, char** cmd, char* output){
+Command new_cmd(char* doc, int dep, char* cmd, char* output){
 
     Command new = malloc(sizeof(struct command));
     new->doc = malloc (sizeof(char)*strlen(doc));
-    new->dep = dep;
+    new->cmd = malloc (sizeof(char)*strlen(cmd));
     new->output = malloc(sizeof(output));
 
     strcpy( new->doc, doc);
-    new->cmd = cmd;
+    new->dep = dep;
+    strcpy( new->cmd, cmd);
+    new->pro_cmd = NULL;
     strcpy( new->output, output);
 
     return new;
@@ -36,7 +39,7 @@ int get_dep(Command c){
         return c->dep;
     return 0;
 }
-char** get_cmd(Command c){
+char* get_cmd(Command c){
     if(c)
         return c->cmd;
     return NULL;
@@ -50,13 +53,19 @@ char* get_out(Command c){
 
 //Setters.
 void set_out(Command c,char* out){
-   strcpy(c->output, out);
+    strcpy(c->output, out);
+}
+void set_dep(int dep, Command c){
+    c->dep=dep;
+}
+void set_pro_cmd(char** pro_cmd, Command c){
+    c->pro_cmd=pro_cmd;
 }
 
 void print_command(Command c){
 
     if(c)
-        printf("Command:\n\tdoc: %s\tcmd: \n\toutput: %s\n\n",get_doc(c),get_out(c));
+        printf("Command:\n\tdoc: %s\tcmd: %s\n\tdep: %d\n\toutput: %s\n\n",get_doc(c),get_cmd(c),get_dep(c),get_out(c));
 }
 
 void free_command(Command c){

@@ -4,14 +4,15 @@
 
 typedef struct command* Command;
 
-Command new_cmd(char* doc,int dep, char** cmd, char* output);
+Command new_cmd(char* doc, int dep, char* cmd, char* output);
 
 char* get_doc(Command c);
 int get_dep(Command c);
-char** get_cmd(Command c);
+char* get_cmd(Command c);
 char* get_out(Command c);
 
 void set_out(Command c, char* out);
+void set_dep(int dep, Command c);
 
 void print_command(Command c);
 

@@ -7,7 +7,7 @@ qwerty
 cvbnm
 <<<
 E escolher o primeiro:
-$| head -1
+$2| head -1
 >>>
 ola
 azul

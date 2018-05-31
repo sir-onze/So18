@@ -24,6 +24,69 @@ static void clean_spaces (char* x){
 	x[j] = '\0';
 }
 
+static int calc_dep(char* c){
+    char* dep;
+    char* aux = malloc(sizeof(char)*strlen(c));
+    strcpy(aux,c);
+    if(!strstr(aux,"|"))
+        return 0;
+    else{
+        dep = strtok(aux,"| ");
+        c+=1;
+        if(strlen(dep)==0)
+            return 1;
+        else
+            return atoi(dep);
+    }
+
+}
+
+static void break_string(Command c){
+    int i=0,j=0;
+    char* tok[2] = {"|"," "};
+    char** pro_cmd=NULL;
+    char* aux;
+    char* cmd = malloc(sizeof(char)*strlen(get_cmd(c)));
+    strcpy(cmd, get_cmd(c));
+    char* p;
+    if(strstr(cmd,tok[i])){
+        i = 0;
+    }
+    else{
+        i = 1;
+    }
+    p = strtok (cmd,tok[i]);
+    while (p){
+        switch (i){
+            case 0:
+                pro_cmd[j]=malloc(sizeof(char)*strlen(p));
+                strcpy(pro_cmd[j],p);
+                j++;
+                i++;
+                p    = strtok (NULL,tok[i]);
+                break;
+            case 1:
+                pro_cmd[j]=malloc(sizeof(char)*strlen(p));
+                strcpy(pro_cmd[j],p);
+                j++;
+                p = strtok (NULL,tok[i]);
+                break;
+            default:
+                printf("Nao devia estar aqui!");
+            }
+    }
+    //pro_cmd[j]=NULL;
+}
+
+static void parse_cmd(CMD_ARRAY array){
+    Command c;
+    for(int i=0; i<get_arraydate_counter(array); i++){
+        c=get_element(array, i);
+        set_dep(calc_dep(get_cmd(c)), c);
+        break_string(c);
+    }
+}
+
 void notebook_parser(CMD_ARRAY array, char* name){
 
     //Open notebook.
@@ -46,7 +109,6 @@ void notebook_parser(CMD_ARRAY array, char* name){
     char* cmd = NULL;
     char* output = "";
 
-    char** cmd_aux;
     char *p;
     char* tok[5] = {"$","\n","$",">>>","<<<"};
     int i = 0;
@@ -70,9 +132,9 @@ void notebook_parser(CMD_ARRAY array, char* name){
                 i++;
 
                 clean_spaces(cmd);
-                //Inserir novo commando na double linked list.
-                Command c = new_cmd(doc,dep,cmd_aux,output);
-                
+                //Inserir novo commando no array.
+                Command c = new_cmd(doc,dep,cmd+1,output);
+
                 //print_command(c);
                 add_element(array,c);
 
@@ -91,9 +153,11 @@ void notebook_parser(CMD_ARRAY array, char* name){
                 break;
 
             default:
-                printf("Nao devia estar aqui!!!");
+                printf("Nao devia estar aqui!");
         }
     }
+
+    parse_cmd(array);
 
     free(doc);
     free(cmd);
