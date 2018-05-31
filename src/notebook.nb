@@ -1,0 +1,16 @@
+Este comando lista os ficheiros:
+$ ls
+Agora podemos ordenar estes ficheiros:
+$| sort
+>>>
+qwerty
+cvbnm
+<<<
+E escolher o primeiro:
+$| head -1
+>>>
+ola
+azul
+<<<
+Comando de exemplo:
+$ l

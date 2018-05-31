@@ -6,41 +6,45 @@
 #include <errno.h>
 
 struct array_data {
-    int *pointer;
+    Command *pointer;
     int counter;
     int size;
 };
 
+int get_arraydate_counter(CMD_ARRAY arraydata){
+    return arraydata->counter;
+}
+
 CMD_ARRAY init_cmd_array() {
 	CMD_ARRAY new_array = malloc(sizeof(CMD_ARRAY));
-	new_array->pointer = calloc(1000, sizeof(int));
-	new_array->size = 1000;
+	new_array->pointer = calloc(20, sizeof(Command));
+	new_array->size = 20;
 	new_array->counter = 0;
 	return new_array;
 }
 
 void resize_array(CMD_ARRAY array) {
-	int new_size = (array->size * sizeof(int)) * 2;
+	int new_size = (array->size * sizeof(Command)) * 2;
 	array->pointer = realloc(array->pointer, new_size);
 	fflush (stdout);
-	array->size *= 2;  // This is the number of elements, don't multiply by sizeof
+	array->size *= 2;
 }
 
-int add_element(CMD_ARRAY array, int number) {
+int add_element(CMD_ARRAY array, Command cmd) {
 	if (array->counter >= array->size) {
 		resize_array(array);
 	}
-    *(array->pointer + array->counter) = number;  // Pointer arithmetic
+    *(array->pointer + array->counter) = cmd;
 	array->counter += 1;
 
 	return 0;
 }
 
-int get_element(CMD_ARRAY array, int index) {
+Command get_element(CMD_ARRAY array, int index) {
 	if (array->counter >= array->size) {
-		return -1;
+		return NULL;
 	}
-    int *data = array->pointer + index;
+    Command *data = array->pointer + index;
 
     return *data;
 }
