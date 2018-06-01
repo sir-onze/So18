@@ -54,11 +54,10 @@ static int calc_dep(char* c){
 
 static void break_string(Command c){
     int i=0,j=0;
-    char* tok[2] = {"| "," "};
     char* cmd = malloc(sizeof(char)*strlen(get_cmd(c)));
     strcpy(cmd, get_cmd(c));
     char* p;
-    if(strstr(cmd,tok[i])){
+    if(strstr(cmd,"|")){
         i = 0;
     }
     else{
@@ -66,35 +65,31 @@ static void break_string(Command c){
         cmd++;
     }
     char** pro_cmd = malloc(sizeof(char)*(count_spaces(cmd)+2));
-    p = strtok (cmd,tok[i]);
+    p = strtok(cmd," ");
     while (p){
         switch (i){
             case 0:
                 i++;
-                p = strtok (NULL,tok[i]);
+                p = strtok (NULL," ");
                 break;
             case 1:
                 pro_cmd[j] = malloc(sizeof(char)*strlen(p));
                 strcpy(pro_cmd[j],p);
                 j++;
-                p = strtok (NULL,tok[i]);
+                p = strtok (NULL," ");
                 break;
             default:
                 printf("Nao devia estar aqui!");
             }
     }
     pro_cmd[j]=NULL;
-    /*printf("+++++++++++++\n");
-    for(int i = 0; pro_cmd[i]!=NULL; i++) {
-        printf("%s\n", pro_cmd[i]);
-    }*/
     set_pro_cmd(pro_cmd, c);
 }
 
 static void parse_cmd(CMD_ARRAY array){
     Command c;
     for(int i=0; i<get_arraydate_counter(array); i++){
-        c=get_element(array, i);
+        c = get_element(array, i);
         set_dep(calc_dep(get_cmd(c)), c);
         break_string(c);
     }

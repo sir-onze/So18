@@ -27,8 +27,7 @@ char* exec_cmd(char** cmd, int fdo){
         dup2(fdo, 0);
         dup2(p[1], 1);
         close(p[0]);
-        //dup2(p[1],1);
-        //close(p[1]);
+
         //executamos e vai tudo para o pipe
         execvp(cmd[0],cmd);
 
@@ -50,9 +49,12 @@ void exec_cmd_array(CMD_ARRAY array){
     char* o;
     for(int i=0; i<get_arraydate_counter(array); i++){
         int dep = get_dep(get_element(array, i));
+
         char* output = get_out(get_element(array, i-dep));
+
         int fdo = open("output.txt", O_RDWR|O_CREAT|O_TRUNC, 0664);
         write(fdo, output, strlen(output));
+
         char** pro_cmd = get_pro_cmd(get_element(array, i));
         o = exec_cmd(pro_cmd, fdo);
         set_out(get_element(array, i), o);
