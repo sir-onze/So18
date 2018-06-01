@@ -9,12 +9,13 @@
 
 #include "exec.h"
 #include "array.h"
+#include "command.h"
 
 char* exec_cmd(char** cmd, int fdo){
 
     int fdf, p[2];
-    char* output = malloc(sizeof(char)*1024);
-    char* buffer = malloc(sizeof(char)*1024);
+    char* output = malloc(1024);
+    //char* buffer = malloc(sizeof(char)*1024);
     pipe(p);
 
     /*read(fdo, buffer, 1024);
@@ -23,23 +24,25 @@ char* exec_cmd(char** cmd, int fdo){
     fdf = fork();
     if(!fdf){
         //passamos o output para o pipe de escrita
+        dup2(fdo, 0);
+        dup2(p[1], 1);
         close(p[0]);
-        dup2(p[1],1);
-        close(p[1]);
-        //dup2(fdo, 0);
+        //dup2(p[1],1);
+        //close(p[1]);
         //executamos e vai tudo para o pipe
         execvp(cmd[0],cmd);
 
         perror("Error execvp");
-        _exit(0);
+        _exit(1);
     }
     // aqui estamos no pai
     else{
         wait(NULL);
         close(p[1]);
-        read(p[0], output, 1024);
+        read(p[0], output, strlen(output));
         close(p[0]);
     }
+    printf("NO FIIIIIM: %s\n",output);
     return output;
 }
 
@@ -50,8 +53,8 @@ void exec_cmd_array(CMD_ARRAY array){
         char* output = get_out(get_element(array, i-dep));
         int fdo = open("output.txt", O_RDWR|O_CREAT|O_TRUNC, 0664);
         write(fdo, output, strlen(output));
-
-        o = exec_cmd(get_pro_cmd(get_element(array, i)), fdo);
+        char** pro_cmd = get_pro_cmd(get_element(array, i));
+        o = exec_cmd(pro_cmd, fdo);
         set_out(get_element(array, i), o);
         close(fdo);
     }

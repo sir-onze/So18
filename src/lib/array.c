@@ -8,7 +8,7 @@
 #include "array.h"
 
 struct array_data {
-    Command* pointer;
+    Command *pointer;
     int counter;
     int size;
 };

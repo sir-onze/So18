@@ -1,10 +1,10 @@
 Este comando lista os ficheiros:
 $ ls
 Agora podemos ordenar estes ficheiros:
-$| sort
+$3| sort
 >>>
 qwerty
 cvbnm
 <<<
 E escolher o primeiro:
-$| head -1
+$2| head -1
