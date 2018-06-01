@@ -12,14 +12,18 @@
 #include "command.h"
 
 char* exec_cmd(char** cmd, int fdo){
+    for(int i=0; cmd[i]!=NULL; i++){
+        printf("%s ", cmd[i]);
+    }
+    printf("\n");
 
-    int fdf, p[2];
+    /*int fdf, p[2];
     char* output = malloc(1024);
     //char* buffer = malloc(sizeof(char)*1024);
     pipe(p);
 
-    /*read(fdo, buffer, 1024);
-    write(1, buffer, strlen(buffer));*/
+    //read(fdo, buffer, 1024);
+    //write(1, buffer, strlen(buffer));
 
     fdf = fork();
     if(!fdf){
@@ -36,13 +40,12 @@ char* exec_cmd(char** cmd, int fdo){
     }
     // aqui estamos no pai
     else{
-        wait(NULL);
         close(p[1]);
         read(p[0], output, strlen(output));
         close(p[0]);
     }
-    printf("NO FIIIIIM: %s\n",output);
-    return output;
+    printf("NO FIIIIIM: %s\n",output);*/
+    return NULL;
 }
 
 void exec_cmd_array(CMD_ARRAY array){
@@ -57,7 +60,7 @@ void exec_cmd_array(CMD_ARRAY array){
 
         char** pro_cmd = get_pro_cmd(get_element(array, i));
         o = exec_cmd(pro_cmd, fdo);
-        set_out(get_element(array, i), o);
+        //set_out(get_element(array, i), o);
         close(fdo);
     }
 }

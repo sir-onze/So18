@@ -49,7 +49,6 @@ static int calc_dep(char* c){
             return atoi(dep);
         }
     }
-
 }
 
 static void break_string(Command c){
