@@ -108,8 +108,6 @@ void notebook_parser(CMD_ARRAY array, char* name){
          strfile = (char*)realloc(strfile,1024);
          strcat(strfile,buffer);
     }
-    /* ESTA A FAZER O PRINT DIREITO printf("%s",strfile); */
-    /* OK!!! */
 
     //Guardar informacao de cada comando.
     char* doc = NULL;
@@ -155,8 +153,12 @@ void notebook_parser(CMD_ARRAY array, char* name){
                 if(prefix(tok[i],p)){
                     i++;
                     strsep(&p,tok[i]);
-                    p = p + 3;
-                    i=0;
+                    if(strlen(p) == 3)
+                        p = NULL;
+                    else{
+                        p = p + 3;
+                        i=0;
+                    }
                 }else i=0;
                 break;
 
