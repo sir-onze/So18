@@ -39,6 +39,11 @@ int get_dep(Command c){
         return c->dep;
     return 0;
 }
+char** get_pro_cmd(Command c){
+    if(c)
+        return c->pro_cmd;
+    return NULL;
+}
 char* get_cmd(Command c){
     if(c)
         return c->cmd;

@@ -10,6 +10,7 @@ char* get_doc(Command c);
 int get_dep(Command c);
 char* get_cmd(Command c);
 char* get_out(Command c);
+char** get_pro_cmd(Command c);
 
 void set_out(Command c, char* out);
 void set_dep(int dep, Command c);

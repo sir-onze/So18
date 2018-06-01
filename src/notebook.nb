@@ -7,10 +7,4 @@ qwerty
 cvbnm
 <<<
 E escolher o primeiro:
-$2| head -1
->>>
-ola
-azul
-<<<
-Comando de exemplo:
-$ l
+$| head -1
