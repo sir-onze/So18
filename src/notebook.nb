@@ -1,7 +1,7 @@
 Este comando lista os ficheiros:
 $ ls
 Agora podemos ordenar estes ficheiros:
-$| sort
+$3| sort
 >>>
 qwerty
 cvbnm

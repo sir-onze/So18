@@ -12,6 +12,16 @@ static int prefix(const char *pre, const char *str){
     return strncmp(pre, str, strlen(pre)) == 0;
 }
 
+static int count_spaces (char* s){
+    int spaces=0;
+    for(int i = 0; s[i] != '\0'; i++){
+        if(s[i] == ' '){
+            spaces++;
+        }
+    }
+    return spaces;
+}
+
 static void clean_spaces (char* x){
 	int i, j=0;
     for(i=0; x[i]!='\0'; i++){
@@ -31,21 +41,20 @@ static int calc_dep(char* c){
     if(!strstr(aux,"|"))
         return 0;
     else{
-        dep = strtok(aux,"| ");
-        c+=1;
-        if(strlen(dep)==0)
+        if(aux[0]=='|'){
             return 1;
-        else
+        }
+        else{
+            dep = strtok(aux,"|");
             return atoi(dep);
+        }
     }
 
 }
 
 static void break_string(Command c){
     int i=0,j=0;
-    char* tok[2] = {"|"," "};
-    char** pro_cmd=NULL;
-    char* aux;
+    char* tok[2] = {"| "," "};
     char* cmd = malloc(sizeof(char)*strlen(get_cmd(c)));
     strcpy(cmd, get_cmd(c));
     char* p;
@@ -54,19 +63,18 @@ static void break_string(Command c){
     }
     else{
         i = 1;
+        cmd++;
     }
+    char** pro_cmd = malloc(sizeof(char)*(count_spaces(cmd)+2));
     p = strtok (cmd,tok[i]);
     while (p){
         switch (i){
             case 0:
-                pro_cmd[j]=malloc(sizeof(char)*strlen(p));
-                strcpy(pro_cmd[j],p);
-                j++;
                 i++;
-                p    = strtok (NULL,tok[i]);
+                p = strtok (NULL,tok[i]);
                 break;
             case 1:
-                pro_cmd[j]=malloc(sizeof(char)*strlen(p));
+                pro_cmd[j] = malloc(sizeof(char)*strlen(p));
                 strcpy(pro_cmd[j],p);
                 j++;
                 p = strtok (NULL,tok[i]);
@@ -75,7 +83,12 @@ static void break_string(Command c){
                 printf("Nao devia estar aqui!");
             }
     }
-    //pro_cmd[j]=NULL;
+    pro_cmd[j]=NULL;
+    /*printf("+++++++++++++\n");
+    for(int i = 0; pro_cmd[i]!=NULL; i++) {
+        printf("%s\n", pro_cmd[i]);
+    }*/
+    set_pro_cmd(pro_cmd, c);
 }
 
 static void parse_cmd(CMD_ARRAY array){
@@ -133,7 +146,7 @@ void notebook_parser(CMD_ARRAY array, char* name){
 
                 clean_spaces(cmd);
                 //Inserir novo commando no array.
-                Command c = new_cmd(doc,dep,cmd+1,output);
+                Command c = new_cmd(doc,dep,cmd,output);
 
                 //print_command(c);
                 add_element(array,c);

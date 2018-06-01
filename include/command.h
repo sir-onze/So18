@@ -13,8 +13,10 @@ char* get_out(Command c);
 
 void set_out(Command c, char* out);
 void set_dep(int dep, Command c);
+void set_pro_cmd(char** pro_cmd, Command c);
 
 void print_command(Command c);
+void print_procmd(Command c);
 
 void free_command(Command c);
 

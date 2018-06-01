@@ -56,16 +56,26 @@ void set_out(Command c,char* out){
     strcpy(c->output, out);
 }
 void set_dep(int dep, Command c){
-    c->dep=dep;
+    c->dep = dep;
 }
 void set_pro_cmd(char** pro_cmd, Command c){
-    c->pro_cmd=pro_cmd;
+    c->pro_cmd = pro_cmd;
 }
 
 void print_command(Command c){
-
     if(c)
         printf("Command:\n\tdoc: %s\tcmd: %s\n\tdep: %d\n\toutput: %s\n\n",get_doc(c),get_cmd(c),get_dep(c),get_out(c));
+}
+
+void print_procmd(Command c){
+    if(c){
+        printf("---- CMD ----\n");
+        char** aux = c->pro_cmd;
+        for(int i = 0; aux[i]!=NULL; i++) {
+            printf("%s\n", aux[i]);
+        }
+    }
+
 }
 
 void free_command(Command c){

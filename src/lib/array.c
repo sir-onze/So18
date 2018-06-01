@@ -1,9 +1,11 @@
 
-#include "array.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
+
+#include "parser.h"
+#include "array.h"
 
 struct array_data {
     Command *pointer;
@@ -49,6 +51,6 @@ Command get_element(CMD_ARRAY array, int index) {
     return *data;
 }
 
-void load_cmd_array(){
-
+void load_cmd_array(CMD_ARRAY array, char* argv){
+    notebook_parser(array, argv);
 }
