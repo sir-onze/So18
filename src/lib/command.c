@@ -58,6 +58,7 @@ char* get_out(Command c){
 
 //Setters.
 void set_out(Command c,char* out){
+    c->output = malloc(sizeof(char)*strlen(out));
     strcpy(c->output, out);
 }
 void set_dep(int dep, Command c){

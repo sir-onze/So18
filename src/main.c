@@ -16,7 +16,7 @@ int main(int argc, char** argv){
 
     /*Command c;
     for(int i=0; i<get_arraydate_counter(cmd_array); i++){
-        c=get_element(cmd_array, i);
+        c = get_element(cmd_array, i);
         print_command(c);
     }
     printf("---------\n");
