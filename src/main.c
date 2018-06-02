@@ -11,8 +11,10 @@ int main(int argc, char** argv){
 
     CMD_ARRAY cmd_array = init_cmd_array();
 
-    if(argc == 2)
-        load_cmd_array(cmd_array, argv[1]);
+    if(argc < 2) return -1;
+
+    for(int i=1;i<argc;i++){
+        load_cmd_array(cmd_array, argv[i]);
 
     /*Command c;
     for(int i=0; i<get_arraydate_counter(cmd_array); i++){
@@ -26,6 +28,7 @@ int main(int argc, char** argv){
     }*/
 
     exec_cmd_array(cmd_array);
-
+    print_cmd_file(cmd_array,argv[i]);
+}
     return 0;
 }

@@ -68,6 +68,11 @@ void set_pro_cmd(char** pro_cmd, Command c){
     c->pro_cmd = pro_cmd;
 }
 
+void set_cmd(Command c,char* cmd){
+  c->cmd = malloc(sizeof(char)*strlen(cmd));
+  strcpy(c->cmd,cmd);
+}
+
 void print_command(Command c){
     if(c)
         printf("Command:\n\tdoc: %s\tcmd: %s\n\tdep: %d\n\toutput: %s\n\n",get_doc(c),get_cmd(c),get_dep(c),get_out(c));
