@@ -61,6 +61,7 @@ static void break_string(Command c){
     }
     else{
         i = 1;
+        /* AVANCAR O ESPAÇO EM BRANCO */
         cmd++;
     }
     char** pro_cmd = malloc(sizeof(char)*(count_spaces(cmd)+2));

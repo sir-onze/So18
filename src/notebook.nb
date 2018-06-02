@@ -7,4 +7,4 @@ qwerty
 cvbnm
 <<<
 E escolher o primeiro:
-$2| head -1
+$| head -1
