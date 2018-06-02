@@ -58,18 +58,19 @@ void exec_cmd_array(CMD_ARRAY array){
 
         char** pro_cmd = get_pro_cmd(get_element(array, i));
         o = exec_cmd(pro_cmd, output);
-
         set_out(get_element(array, i), o);
     }
 }
 
 void print_cmd_file(CMD_ARRAY array,char* f){
-    int i;
-    Command c;
-    char* aux;
-    char* auxi;
-    truncate(f,0);
-    int fd = open(f,O_WRONLY|O_APPEND,0666);
+  int i;
+  Command c;
+  char* aux;
+  char* auxi;
+
+  //função que nos permite limpar o ficheiro
+  truncate(f,0);
+  int fd = open(f,O_WRONLY|O_APPEND,0666);
 
     for(i=0;i<get_arraydate_counter(array);i++){
         c = get_element(array,i);

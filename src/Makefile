@@ -18,9 +18,9 @@ $(ODIR)/%.o : %.c $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 program: $(SOURCES_OBJ) $(MY_LIBS_OBJ)
-	$(CC) $(CFLAGS) $(wildcard $(ODIR)/*.o)  $(wildcard $(OLDIR)/*.o) -o program
+	$(CC) $(CFLAGS) $(wildcard $(ODIR)/*.o)  $(wildcard $(OLDIR)/*.o) -o notebook
 
 clean:
 	rm obj/*.o
 	rm obj/lib/*.o
-	rm program
+	rm notebook

@@ -4,6 +4,7 @@ $ ls
 lib
 main.c
 Makefile
+notebook
 notebook2.nb
 notebook.nb
 obj
@@ -15,6 +16,7 @@ $| sort
 lib
 main.c
 Makefile
+notebook
 notebook2.nb
 notebook.nb
 obj
