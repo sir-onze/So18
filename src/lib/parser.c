@@ -98,14 +98,13 @@ static void parse_cmd(CMD_ARRAY array){
 void notebook_parser(CMD_ARRAY array, char* name){
 
     //Open notebook.
-    int fd = open(name,O_RDONLY | O_CREAT,0774);
-    char* strfile = NULL;
+    int n = 0, fd = open(name,O_RDONLY | O_CREAT,0774);
+    char* strfile = malloc(10*1024);
 
     //Ler do ficheiro e inserir numa string.
     char buffer[1024];
 
-    while( read(fd, buffer, 1024) > 0){
-         strfile = (char*)realloc(strfile,1024);
+    while((n = read(fd, buffer, 1024)) > 0){
          strcat(strfile,buffer);
     }
 
@@ -153,11 +152,13 @@ void notebook_parser(CMD_ARRAY array, char* name){
                 if(prefix(tok[i],p)){
                     i++;
                     strsep(&p,tok[i]);
-                    if(strlen(p) == 3)
-                        p = NULL;
-                    else{
-                        p = p + 3;
-                        i=0;
+                    if(p){
+                        if(strlen(p) == 3)
+                            p = NULL;
+                        else{
+                            p = p + 3;
+                            i=0;
+                        }
                     }
                 }else i=0;
                 break;

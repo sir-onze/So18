@@ -1,6 +1,7 @@
 Este comando lista os ficheiros:
 $ ls
 >>>
+exemplo.nb
 lib
 main.c
 Makefile
@@ -8,11 +9,11 @@ notebook
 notebook2.nb
 notebook.nb
 obj
-program
 <<<
 Agora podemos ordenar estes ficheiros:
 $| sort
 >>>
+exemplo.nb
 lib
 main.c
 Makefile
@@ -20,10 +21,9 @@ notebook
 notebook2.nb
 notebook.nb
 obj
-program
 <<<
 E escolher o primeiro:
 $| head -1
 >>>
-lib
+exemplo.nb
 <<<

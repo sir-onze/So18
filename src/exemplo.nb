@@ -1,0 +1,251 @@
+Este comando lista os ficheiros:
+$ ls
+>>>
+exemplo.as.nb
+exemplo.nb
+lib
+main.c
+Makefile
+notebook
+notebook2.nb
+notebook.nb
+obj
+<<<
+Agora podemos ordenar estes ficheiros:
+$| sort
+>>>
+exemplo.as.nb
+exemplo.nb
+lib
+main.c
+Makefile
+notebook
+notebook2.nb
+notebook.nb
+obj
+<<<
+E escolher o primeiro:
+$| head -3
+>>>
+exemplo.as.nb
+exemplo.nb
+lib
+<<<
+Mostrar processos em execução:
+$ ps
+>>>
+  PID TTY          TIME CMD
+10580 pts/3    00:00:00 zsh
+14412 pts/3    00:00:00 notebook
+14416 pts/3    00:00:00 ps
+<<<
+Mostrar o "Working directory":
+$ pwd
+>>>
+/home/tymo/Code/SO/So18/src
+<<<
+Mostrar permissões e ficheiros ocultos:
+$ ls -la
+>>>
+total 84
+drwxr-xr-x 4 tymo tymo  4096 Jun  2 23:42 .
+drwxr-xr-x 5 tymo tymo  4096 Jun  2 22:57 ..
+-rw-r--r-- 1 tymo tymo  7183 Jun  2 23:38 exemplo.as.nb
+-rw-r--r-- 1 tymo tymo  5253 Jun  2 23:41 exemplo.nb
+drwxr-xr-x 2 tymo tymo  4096 Jun  2 22:55 lib
+-rw-r--r-- 1 tymo tymo   411 Jun  2 22:55 main.c
+-rw-r--r-- 1 tymo tymo   568 Jun  2 22:55 Makefile
+-rwxr-xr-x 1 tymo tymo 32984 Jun  2 23:42 notebook
+-rw-r--r-- 1 tymo tymo   299 Jun  2 22:58 notebook2.nb
+-rw-r--r-- 1 tymo tymo   283 Jun  2 23:32 notebook.nb
+drwxr-xr-x 3 tymo tymo  4096 Jun  2 23:42 obj
+<<<
+Mostrar periféricos do computador:
+$ lspci
+>>>
+00:00.0 Host bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor DRAM Controller (rev 06)
+00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller (rev 06)
+00:02.0 VGA compatible controller: Intel Corporation 4th Gen Core Processor Integrated Graphics Controller (rev 06)
+00:03.0 Audio device: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor HD Audio Controller (rev 06)
+00:14.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI (rev 05)
+00:16.0 Communication controller: Intel Corporation 8 Series/C220 Series Chipset Family MEI Controller #1 (rev 04)
+00:1a.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB EHCI #2 (rev 05)
+00:1b.0 Audio device: Intel Corporation 8 Series/C220 Series Chipset High Definition Audio Controller (rev 05)
+00:1c.0 PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express Root Port #1 (rev d5)
+00:1c.1 PCI bridge: Intel Corporation 8 Series/C220 Ser<<<
+Verificar conexões de rede:
+$ ifconfig
+>>>
+enp9s0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        ether f0:76:1c:6b:f3:61  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 30  base 0x9000  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 27537  bytes 13037311 (12.4 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 27537  bytes 13037311 (12.4 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlp8s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.97  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::3111:56d2:7aa1:e07  prefixlen 64  scopeid 0x20<link>
+        ether d0:7e:35:d4:bf:25  txqueuelen 1000  (<<<
+BROADCAST,MULTICAST>  mtu 1500
+        ether 2c:60:0c:f5:c4:97  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 49  base 0x90-�J�U000  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 892  bytes 72324 (70.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 892  bytes 72324 (70.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlp3s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.201  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::8f86:ef6f:bdfa:e5f7  prefixlen 64  scopeid 0x20<link>
+        ether 18:4f:32:d5:a2:d5  txqueuelen 1000  (Ethernet)
+        RX packets 121  bytes 26387 (25.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 126  bytes 31003 (30.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+<<<
+Verificar modificações no repositório GIT:
+$ git status
+>>>
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   lib/parser.c
+	modified:   notebook
+	modified:   notebook.nb
+	modified:   notebook2.nb
+	modified:   obj/lib/array.o
+	modified:   obj/lib/command.o
+	modified:   obj/lib/exec.o
+	modified:   obj/lib/parser.o
+	modified:   obj/main.o
+	deleted:    program
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	exemplo.as.nb
+	exemplo.nb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+<<<
+e>..." to unstage)
+
+	modified:   exemplo.nb
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   ../.gitignore
+	modified:   exemplo.nb
+
+<<<
+Encontrar ocorrencias de "inet":
+$22| grep inet
+>>>
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        inet 192.168.1.97  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::3111:56d2:7aa1:e07  prefixlen 64  scopeid 0x20<link>
+<<<
+t>
+        inet 192.168.1.201  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::8f86:ef6f:bdfa:e5f7  prefixlen 64  scopeid 0x20<link>
+<<<
+Ficar com os 2 primeiros da lista:
+$55| head -2
+>>>
+total 84
+drwxr-xr-x 4 tymo tymo  4096 Jun  2 23:42 .
+<<<
+Contar palavras:
+$44| wc
+>>>
+     20     122    1024
+<<<
+Ordenar:
+$99| sort
+>>>
+10580 pts/3    00:00:00 zsh
+14412 pts/3    00:00:00 notebook
+14416 pts/3    00:00:00 ps
+  PID TTY          TIME CMD
+<<<
+Ordenar:
+$33| sort
+>>>
+drwxr-xr-x 4 tymo tymo  4096 Jun  2 23:42 .
+total 84
+<<<
+Encontrar o pid do nosso programa:
+$| grep progra
+>>>
+<<<
+Contar palavras:
+$99| wc
+>>>
+      9     147    1024
+<<<
+(use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   ../.gitignore
+	modified:   exemplo.nb
+
+<<<
+Encontrar ocorrencias de "inet":
+$22| grep inet
+>>>
+<<<
+t>
+        inet 192.168.1.201  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::8f86:ef6f:bdfa:e5f7  prefixlen 64  scopeid 0x20<link>
+<<<
+Ficar com os 2 primeiros da lista:
+$55| head -2
+>>>
+10580 pts/3    00:00:00 zsh
+14412 pts/3    00:00:00 notebook
+<<<
+Contar palavras:
+$44| wc
+>>>
+      0       0       0
+<<<
+Ordenar:
+$99| sort
+>>>
+drwxr-xr-x 4 tymo tymo  4096 Jun  2 23:42 .
+total 84
+<<<
+Ordenar:
+$33| sort
+>>>
+10580 pts/3    00:00:00 zsh
+14412 pts/3    00:00:00 notebook
+<<<
