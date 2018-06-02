@@ -63,14 +63,12 @@ void exec_cmd_array(CMD_ARRAY array){
 }
 
 void print_cmd_file(CMD_ARRAY array,char* f){
-  int i;
-  Command c;
-  char* aux;
-  char* auxi;
+    int i;
+    Command c;
+    char* aux;
+    char* auxi;
 
-  //função que nos permite limpar o ficheiro
-  truncate(f,0);
-  int fd = open(f,O_WRONLY|O_APPEND,0666);
+    int fd = open(f,O_WRONLY|O_TRUNC,0666);
 
     for(i=0;i<get_arraydate_counter(array);i++){
         c = get_element(array,i);
@@ -123,8 +121,9 @@ void print_cmd_file(CMD_ARRAY array,char* f){
             write(fd,"\n",1);
         }
         if (get_dep(c)>1){
-            char number = '0'+get_dep(c);
-            char str1[2] = {number,'\0'};
+            /*number = get_dep(c);
+            sprintf(str, "%d", number);
+            itoa(number,str,10);*/
             // DESCRICAO
             aux = malloc(sizeof(char)*strlen(get_doc(c)));
             strcpy(aux,get_doc(c));
@@ -132,7 +131,7 @@ void print_cmd_file(CMD_ARRAY array,char* f){
             // DOLAR
             write(fd,"$",1);
             // DEPENDENCIA
-            write(fd,str1,1);
+            write(fd,get_dep(c),1);
             // COMANDO
             if(realloc(aux,sizeof(get_cmd(c)))){
                 strcpy(aux,get_cmd(c));

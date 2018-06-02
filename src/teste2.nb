@@ -5,10 +5,9 @@ lib
 main.c
 Makefile
 notebook
-notebook2.nb
-notebook.nb
 obj
-program
+teste1.nb
+teste2.nb
 <<<
 Agora podemos ordenar estes ficheiros:
 $| sort
@@ -17,13 +16,17 @@ lib
 main.c
 Makefile
 notebook
-notebook2.nb
-notebook.nb
 obj
-program
+teste1.nb
+teste2.nb
 <<<
 E escolher o primeiro:
 $| head -1
+>>>
+lib
+<<<
+Mais um comando:
+$33| head -1
 >>>
 lib
 <<<
