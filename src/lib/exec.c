@@ -58,9 +58,7 @@ void exec_cmd_array(CMD_ARRAY array){
 
         char** pro_cmd = get_pro_cmd(get_element(array, i));
         o = exec_cmd(pro_cmd, output);
-
         set_out(get_element(array, i), o);
-        print_command(c);
     }
 }
 
@@ -69,6 +67,8 @@ void print_cmd_file(CMD_ARRAY array,char* f){
   Command c;
   char* aux;
   char* auxi;
+
+  //função que nos permite limpar o ficheiro
   truncate(f,0);
   int fd = open(f,O_WRONLY|O_APPEND,0666);
 
@@ -175,10 +175,6 @@ void print_cmd_file(CMD_ARRAY array,char* f){
       //colocamos o dolar
       fd = open(f,O_WRONLY|O_APPEND,0666);
       write(fd,"$",1);
-      close(fd);
-      //colocamos a dependencia
-      fd = open(f,O_WRONLY|O_APPEND,0666);
-      write(fd,get_dep(c),1);
       close(fd);
       // colocamos o comando
       fd = open(f,O_WRONLY|O_APPEND,0666);

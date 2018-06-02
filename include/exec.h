@@ -3,7 +3,7 @@
 
 void exec_cmd_array(CMD_ARRAY cmd_array);
 char* exec_cmd(char** cmd, char* output);
-
+void print_cmd_file(CMD_ARRAY array,char* file);
 /*if(fdf==0){ // FILHO
     //dup2(fdo, 0);
     //dup2(p[1], 1);
